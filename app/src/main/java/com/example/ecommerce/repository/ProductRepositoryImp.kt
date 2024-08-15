@@ -68,7 +68,7 @@ class ProductRepositoryImp : ProductRepository {
             // E/S es donde se hacen operaciones de entrada/salida, como la red o la base de datos
             // En este caso, se usa Dispatchers.IO para que la llamada a la API se realice en un hilo de E/S
             // Si no se usa withContext, la llamada a la API podría bloquear el hilo principal y/o tareas no podrian ejecutarse
-            val call = Servicio().getProducts()
+            val call = Servicio.getProduct.getProducts()
             // Se instancia una llamada (call) a la API que esta dentro de Servicio
             val response = call.execute()
             // Se realiza la llamada a la API y se espera una respuesta (response)

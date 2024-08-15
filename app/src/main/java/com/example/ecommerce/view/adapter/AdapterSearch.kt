@@ -32,9 +32,9 @@ class AdapterSearch(
 
     }
 
-    fun setListProducts(productsResponse: List<Product>): List<Product> {
+    fun setListProducts(productsResponse: List<Product>) {
         products = productsResponse
-        return products
+        notifyDataSetChanged()
     }
 
     /*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

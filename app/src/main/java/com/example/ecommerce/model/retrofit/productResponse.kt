@@ -2,10 +2,6 @@ package com.example.ecommerce.model.retrofit
 
 import com.google.gson.annotations.SerializedName
 
-data class productResponse(
-    val result: List<ProductResponse>,)
-
-
 data class ProductResponse(
 val id: String,
 val title: String,

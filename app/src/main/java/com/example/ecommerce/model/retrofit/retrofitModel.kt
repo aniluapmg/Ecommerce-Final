@@ -14,21 +14,27 @@ interface MyAPI {
     fun getProducts(): Call<List<ProductResponse>>
 }
 
-class Servicio {
-    val endPoint = "https://fakestoreapi.com/"
-
-    fun getProducts(): Call<List<ProductResponse>> {
-        val gson = GsonBuilder().setLenient().create()
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
-        val retrofit = Retrofit.Builder().baseUrl(endPoint).client(client)
-            .addConverterFactory(GsonConverterFactory.create(gson)).build()
-
-        return retrofit.create(MyAPI::class.java).getProducts()
-    }
+object Servicio {
+    private const val BASE_URL = "https://fakestoreapi.com/"
+    val getProduct: MyAPI
+        get() {
+            //gson created an object who is capable to save a Json
+            val gson = GsonBuilder().setLenient().create()
+            //created an access port to HTTP protocol
+            val interceptor = HttpLoggingInterceptor()
+            //Show all the information from the keys
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            //In this case, client is the Android Device
+            val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+            return retrofit.create(MyAPI::class.java)
+        }
 }
+
 
 
 
